@@ -1,9 +1,19 @@
-/* RESET */
+/* RESET & GLOBAL FIXES */
+html,
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #ebe9e1;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 /* NAVBAR */
@@ -82,11 +92,11 @@ body {
 }
 
 .hamburger {
-  display: none; /* Nie pokazuj na komputerze */
+  display: none;
   flex-direction: column;
   cursor: pointer;
-  gap: 6px; /* Odstęp między kreskami */
-  padding-right: 20px; /* Odstęp od krawędzi ekranu */
+  gap: 6px;
+  padding-right: 20px;
 }
 
 .bar {
@@ -128,10 +138,12 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 0 20px;
 }
 
 .hero-content-container {
   margin-bottom: 100px;
+  width: 100%;
 }
 
 .hero-title {
@@ -139,6 +151,7 @@ body {
   margin-bottom: 5px;
   font-family: "Cormorant Garamond", sans-serif;
   font-weight: 400;
+  word-wrap: break-word;
 }
 
 .hero-tagline {
@@ -164,6 +177,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 85vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .about-content-container {
@@ -216,7 +231,7 @@ body {
 .services-section {
   background-color: #2c3e31;
   padding: 100px 0;
-  height: 85vh;
+  min-height: 85vh;
   text-align: center;
 }
 
@@ -267,6 +282,7 @@ body {
   object-fit: cover;
   display: block;
 }
+
 /* Contact */
 
 .contact-section {
@@ -274,6 +290,7 @@ body {
   color: black;
   min-height: 85vh;
   padding: 50px 0;
+  width: 100%;
 }
 
 .contact-section-container {
@@ -536,7 +553,6 @@ body {
 
 @media screen and (max-width: 1024px) {
   /* Navbar */
-
   .right-side-nav ul {
     gap: 25px;
   }
@@ -552,7 +568,7 @@ body {
     padding: 80px 0;
   }
 
-  .grid-colum-container {
+  .grid-column-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -575,19 +591,23 @@ body {
   }
 
   /* Contact */
-
   .contact-section {
     height: auto;
-    margin-right: 50px;
+    margin-right: 0;
+    width: 100%;
   }
 
   .contact-section-container {
     flex-direction: column;
     display: flex;
+    width: 100%;
+    padding: 0 40px; /* Dodano padding zewnętrzny dla estetyki */
   }
 
   .contact-text-container {
-    padding: 40px;
+    padding: 0;
+    margin-bottom: 40px;
+    width: 100%;
   }
 
   .contact-left-side {
@@ -600,18 +620,21 @@ body {
   }
 
   .contact-right-side {
-    width: 100%;
+    width: 100%; /* Pełna szerokość */
     justify-content: center;
     display: flex;
   }
 
+  /* POPRAWKA INPUTÓW TUTAJ: */
   .contact-form {
-    max-width: 100%;
-    max-width: 600px;
-    align-items: center;
+    max-width: 100%; /* Usunięto limit 600px, teraz 100% */
+    width: 100%;
+    align-items: stretch; /* Rozciąga elementy wewnątrz */
   }
-  .input-group {
-    width: 80%;
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%; /* Upewnienie się */
   }
 }
 
@@ -702,7 +725,7 @@ body {
 
   .grid-column-container {
     grid-template-columns: 1fr;
-    width: 80%;
+    width: 90%; /* Nieco szerzej niż 80% */
     margin-left: auto;
     margin-right: auto;
   }
@@ -731,12 +754,14 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 40px;
+    padding: 0 20px; /* Zmniejszono padding, więcej miejsca dla treści */
+    width: 100%;
   }
 
   .contact-text-container {
     text-align: center;
     width: 100%;
-    padding: 0 20px;
+    padding: 0;
     margin-bottom: 20px;
   }
 
@@ -761,7 +786,7 @@ body {
 
   .contact-grid-column {
     flex: none;
-    width: 90%;
+    width: 100%;
     max-width: 500px;
     height: 400px;
     margin: 0 auto;
@@ -770,13 +795,20 @@ body {
   .contact-right-side {
     width: 100%;
     justify-content: center;
-    margin-right: 50px;
+    margin-right: 0;
   }
 
+  /* POPRAWKA INPUTÓW TUTAJ: */
   .contact-form {
     width: 100%;
-    padding: 30px;
+    padding: 0; /* Usunięto wewnętrzny padding, który ściskał inputy */
     border-radius: 10px;
+    max-width: 100%; /* Pełna szerokość */
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
   }
 
   .contact-form h5 {
@@ -803,8 +835,13 @@ body {
     margin-left: 0;
   }
 }
-
 @media screen and (max-width: 480px) {
+  html,
+  body {
+    width: 100%;
+    min-width: 320px;
+  }
+
   .left-side-nav {
     display: none;
   }
@@ -856,16 +893,6 @@ body {
     align-self: center;
   }
 
-  .hamburger .bar.open:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .hamburger .bar.open:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger .bar.open:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-
   .hero-section {
     height: 85vh;
     display: flex;
@@ -887,9 +914,10 @@ body {
 
   .grid-column-container {
     grid-template-columns: 1fr;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    padding: 0 20px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .services-container h1 {
@@ -898,30 +926,32 @@ body {
 
   .services-grid-container {
     grid-template-columns: 1fr;
-    max-width: 350px;
+    max-width: 100%;
+    padding: 0 20px;
     margin: 0 auto;
   }
 
   .services-grid-column {
     margin-right: auto;
     margin-left: auto;
+    width: 100%;
+    max-width: 350px;
   }
 
   .contact-section-container {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    max-width: 600px;
-    justify-items: center;
-    row-gap: 40px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 25px;
+    padding: 0 15px;
   }
 
   .contact-text-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     text-align: center;
+    padding: 0;
   }
 
   .contact-left-side {
@@ -931,14 +961,16 @@ body {
     align-items: center;
     gap: 30px;
   }
+
   .contact-grid-column img {
     width: 100%;
     max-width: 100%;
     height: auto;
   }
+
   .contact-grid-column {
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     display: flex;
     margin: 0 auto;
     flex-direction: column;
@@ -958,15 +990,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 25px;
+    margin-left: 0;
+    padding: 0;
   }
+
   .input-group {
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     margin-bottom: 15px;
-    margin-left: auto;
-    margin-right: auto;
   }
+
   .input-group input,
   .input-group textarea {
     width: 100%;
@@ -982,6 +1015,7 @@ body {
     align-items: center;
     text-align: center;
     gap: 40px;
+    padding: 0 20px;
   }
 
   .left-side-footer {
