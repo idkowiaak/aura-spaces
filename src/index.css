@@ -20,12 +20,13 @@ body {
 
 .navbar-container {
   width: 100%;
-  position: sticky;
+  position: fixed;
   justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   background-color: #ebe9e1;
   top: 0;
-  z-index: 100;
+  left: 0;
+  z-index: 1000;
 }
 
 .navbar {
@@ -112,7 +113,7 @@ body {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 85vh;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -138,7 +139,6 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 20px;
 }
 
 .hero-content-container {
